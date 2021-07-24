@@ -1,0 +1,8 @@
+[Unit]
+Description=pci
+
+[Service]
+ExecStart=/usr/bin/pcioff.sh
+
+[Install]
+WantedBy=multi-user.target
