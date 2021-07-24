@@ -7,6 +7,11 @@ I **distrohop** alot and I found myself doing all this stuff manually which even
 *It works for other laptops too.*
 
 ## Features of Script
-![Menu](screenshots/pkgmgr.png)
+![Menu](screenshots/mainmenu.png)
 
-
+## How to use
+```bash
+git clone https://github.com/drunckj/Asus-ESS
+cd Asus-ESS/
+./setupscript.sh
+```
