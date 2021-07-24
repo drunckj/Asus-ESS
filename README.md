@@ -31,3 +31,4 @@ If system is mount readonly, enter this in bash
 mount -o remount,rw / --target /
 ```
 And now undo fstab changes by deleting the last entered line in /etc/fstab or deleting the /etc/fstab file and renaming the /etc/fstab.bak to /etc/fstab.
+# Want to buy me a coffee : [Paypal](https://www.paypal.com/paypalme/drunkcj)
