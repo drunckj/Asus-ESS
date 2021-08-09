@@ -283,7 +283,16 @@ then
 	sudo zypper install asusctl.rpm
 elif [[ "$package" == "pacman" ]]
 then
-	yay -S 
+if [ -x /bin/yay ]
+then
+	yay -S asusctl-git
+elif [ -x /bin/paru ]
+then
+	paru -S asusctl-git
+elif [ -x /bin/pamac ]
+then
+	pamac install asusctl-git
+fi
 fi
 if [[ $? -eq 0 ]]
 then
