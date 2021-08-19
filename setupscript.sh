@@ -22,7 +22,9 @@ list (){
 	printf '\t\e[1;32m%-6s\e[m\n' "6. Clear cache and remove unused dependencies"
 	printf '\t\e[1;32m%-6s\e[m\n' "7. Install pulseeffects presets for better sound quality"
 	printf '\t\e[1;32m%-6s\e[m\n' "8. Mic input key not working"
-	printf '\t\e[1;32m%-6s\e[m\n' "9. Exit script"
+	printf '\t\e[1;32m%-6s\e[m\n' "9. Nvidia module not loading after installing [OPENSUSE]"
+	printf '\t\e[1;32m%-6s\e[m\n' "10. Reset package manager "
+	printf '\t\e[1;32m%-6s\e[m\n' "11. Exit script"
 	printf '\t\e[1;32m%-6s\e[m' "enter choice : "
 	read choice
 	case $choice in
@@ -59,6 +61,14 @@ list (){
 		return 1
 		;;
 	9)
+		Nvidia
+		return 1
+		;;
+	10)
+		reset
+		return 1
+		;;
+	11)
 		exit 0
 		;;
 esac	 
@@ -346,6 +356,23 @@ echo "Cache and orphaned packages cleared"
 echo "returning to menu"
 fi
 sleep 5
+clear
+list
+}
+####################################################################################################################################
+Nvidia()
+{
+sudo zypper in --force `rpm -qa "nvidia-gfx*kmp*"`
+clear
+printf '\e[1;32m%-6s\e[m' "Reboot and your Nvidia card should be working. check it by executing lsmod | grep nvidia"
+sleep 10
+clear
+list
+}
+####################################################################################################################################
+reset()
+{
+rm $file
 clear
 list
 }
