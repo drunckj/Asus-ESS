@@ -268,7 +268,7 @@ list
 asusctl(){
 local asusctl_sus="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/openSUSE_Tumbleweed/x86_64/asusctl-3.7.2-1.5.x86_64.rpm"
 local asusctl_fed33="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_33/x86_64/asusctl-3.7.2-1.6.x86_64.rpm"
-local asusctl_fed34="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_34/x86_64/asusctl-3.7.2-1.10.x86_64.rpm"
+local asusctl_fed34="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_34/x86_64/asusctl-3.7.2-1.11.x86_64.rpm"
 local asusctl_deb="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/amd64/asusctl_3.7.1-1.6_amd64.deb"
 if [[ "$package" == "apt" ]]
 then
