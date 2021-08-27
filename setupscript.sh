@@ -268,7 +268,7 @@ list
 asusctl(){
 if [[ "$package" == "apt" ]]
 then
-echo "deb https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/ /" > /etc/apt/sources.list.d/asus.list
+echo "deb https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/ /" | sudo tee /etc/apt/sources.list.d/asus.list
 wget -q -O - https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/Release.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install asusctl
