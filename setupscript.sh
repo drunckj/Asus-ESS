@@ -266,32 +266,34 @@ list
 }
 #############################################################################################################################
 asusctl(){
-local asusctl_sus="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/openSUSE_Tumbleweed/"
-local asusctl_fed33="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_33/x86_64/asusctl-3.7.2-1.6.x86_64.rpm"
-local asusctl_fed34="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/Fedora_34/x86_64/asusctl-3.7.2-1.11.x86_64.rpm"
-local asusctl_deb="https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/amd64/asusctl_3.7.1-1.6_amd64.deb"
 if [[ "$package" == "apt" ]]
 then
-wget --no-check-certificate $asusctl_deb -O asusctl.deb
-sudo apt-get install ./asusctl.deb && sudo apt-get install -f
+echo "deb https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/ /" > /etc/apt/sources.list.d/asus.list
+wget -q -O - https://download.opensuse.org/repositories/home:/luke_nukem:/asus/xUbuntu_21.04/Release.key | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install asusctl
 elif [[ "$package" == "dnf" ]]
 then
 	printf '\e[1;30m%-6s\e[m' "Are you using fedora 33 or fedora 34. enter your fedora version number : "
 	read version
 	if [[ $version -eq 33 ]]
 	then
-		wget --no-check-certificate $asusctl_fed33 -O asusctl.rpm
-		sudo dnf install asusctl.rpm
-		elif [[ $version -eq 34 ]]
+		sed -i 's/34/33/g' packages/asus.repo
+		sudo cp packages/asus.repo /etc/yum.repos.d/asus.repo
+		sudo dnf update --repo asus --refresh
+		sudo dnf install asusctl
+	elif [[ $version -eq 34 ]]
 	then
-		wget --no-check-certificate $asusctl_fed34 -O asusctl.rpm
-		sudo dnf install asusctl.rpm
+		sudo cp packages/asus.repo /etc/yum.repos.d/asus.repo
+		sudo dnf update --repo asus --refresh
+		sudo dnf install asusctl
 	fi
 elif [[ "$package" == "zypper" ]]
 then
-	sudo zypper ar "https://download.opensuse.org/repositories/home:/luke_nukem:/asus/openSUSE_Tumbleweed/" Asusctl
-	sudo zypper refresh
-	sudo zypper install asusctl
+	sudo zypper ar --priority 50 --refresh https://download.opensuse.org/repositories/home:/luke_nukem:/asus/openSUSE_Tumbleweed/ asus-linux
+	sudo zypper ref
+	sudo zypper in asusctl
+
 elif [[ "$package" == "pacman" ]]
 then
 if [ -x /bin/yay ]
@@ -342,6 +344,7 @@ then
 sudo apt autoremove && sudo apt clean
 elif [[ "$package" == "dnf" ]]
 then
+sudo dnf remove --duplicates -y
 sudo dnf autoremove
 sudo dnf clean all
 elif [[ "$package" == "zypper" ]]
