@@ -23,9 +23,8 @@ cd Asus-ESS/
 #### Audio codec selection
 ![Screenshot from 2021-08-28 21-33-32](https://user-images.githubusercontent.com/50874358/131223833-020af799-253a-4a28-b40b-dc68db0cd09b.png)
 #### Ntfs partition option
-![Screenshot from 2021-08-28 21-41-19](https://user-images.githubusercontent.com/50874358/131224010-8f26ae07-b3d3-4067-b220-08f355ab071a.png)
 ![Screenshot from 2021-08-28 21-40-44](https://user-images.githubusercontent.com/50874358/131224011-8c02df9f-b80f-4fd6-9330-682e4734035d.png)
-
+![Screenshot from 2021-08-28 21-41-19](https://user-images.githubusercontent.com/50874358/131224010-8f26ae07-b3d3-4067-b220-08f355ab071a.png)
 #### Pulseeffects presets 
 ![Presets](screenshots/presets.png)
 #### Note
