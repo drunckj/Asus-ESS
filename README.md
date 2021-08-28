@@ -21,7 +21,8 @@ cd Asus-ESS/
 ![pkgmgr](screenshots/pkgmgr.png)
 ### Screenshots
 #### Audio codec selection
-![audiocodec](screenshots/audiocodec.png)
+![Screenshot from 2021-08-28 21-33-32](https://user-images.githubusercontent.com/50874358/131223833-020af799-253a-4a28-b40b-dc68db0cd09b.png)
+
 #### Pulseeffects presets 
 ![Presets](screenshots/presets.png)
 #### Note
