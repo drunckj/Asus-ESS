@@ -1,5 +1,6 @@
 # Asus-ESS
 Asus Easy Setup Script : Script to automate linux installs on Asus laptops **(Works on other laptops too)**
+#### blog for feature description : [Asus-ESS](https://dev.to/drunckj/asus-ess-easy-setup-script-for-setting-up-laptops-after-gnu-linux-installs-3o67)
 ## Functions of the Script
 I **distrohop** alot and I found myself doing all this stuff manually which eventually got tiresome. So I created this script to help other distrohoppers and new linux users. 
 
