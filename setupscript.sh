@@ -385,6 +385,9 @@ pipewire()
 	sudo zypper in pipewire pipewire-pulseaudio pipewire-alsa
 	systemctl --user enable --now pipewire.{service,socket} 
 	systemctl --user enable --now pipewire-pulse.{service,socket}
+	if [[ ! -d "/etc/pipewire" ]]
+	then
+	sudo cp -r /usr/share/pipewire /etc/
 	printf '\e[1;32m%-6s\e[m' "Reboot and open up a terminal and type pactl info and see if it shows Server Name: PulseAudio (on PipeWire). If it does its working properly."
 	sleep 10
 	clear
