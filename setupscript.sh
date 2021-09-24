@@ -23,8 +23,9 @@ list (){
 	printf '\t\e[1;32m%-6s\e[m\n' "7. Install pulseeffects presets for better sound quality"
 	printf '\t\e[1;32m%-6s\e[m\n' "8. Mic input key not working"
 	printf '\t\e[1;32m%-6s\e[m\n' "9. Nvidia module not loading after installing [OPENSUSE]"
-	printf '\t\e[1;32m%-6s\e[m\n' "10. Reset package manager "
-	printf '\t\e[1;32m%-6s\e[m\n' "11. Exit script"
+	printf '\t\e[1;32m%-6s\e[m\n' "10. Switching to pipewire [OPENSUSE]"
+	printf '\t\e[1;32m%-6s\e[m\n' "11. Reset package manager "
+	printf '\t\e[1;32m%-6s\e[m\n' "12. Exit script"
 	printf '\t\e[1;32m%-6s\e[m' "enter choice : "
 	read choice
 	case $choice in
@@ -65,10 +66,14 @@ list (){
 		return 1
 		;;
 	10)
-		reset
+		pipewire
 		return 1
 		;;
 	11)
+		reset
+		return 1
+		;;
+	12)
 		exit 0
 		;;
 esac	 
@@ -373,6 +378,18 @@ sleep 10
 clear
 list
 }
+pipewire()
+{
+	printf '\e[1;32m%-6s\e[m' "select 1st option when it shows errors and asks for user input to fix the conflict"
+
+	sudo zypper in pipewire pipewire-pulseaudio pipewire-alsa
+	systemctl --user enable --now pipewire.{service,socket} 
+	systemctl --user enable --now pipewire-pulse.{service,socket}
+	printf '\e[1;32m%-6s\e[m' "Reboot and open up a terminal and type pactl info and see if it shows Server Name: PulseAudio (on PipeWire). If it does its working properly."
+	sleep 10
+	clear
+	list
+}
 ####################################################################################################################################
 reset()
 {
@@ -381,3 +398,4 @@ clear
 list
 }
 list	
+ server name as pulsaudi
