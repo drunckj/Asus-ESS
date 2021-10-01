@@ -389,6 +389,7 @@ pipewire()
 	then
 	sudo cp -r /usr/share/pipewire /etc/
 	printf '\e[1;32m%-6s\e[m' "Reboot and open up a terminal and type pactl info and see if it shows Server Name: PulseAudio (on PipeWire). If it does its working properly."
+	fi
 	sleep 10
 	clear
 	list
@@ -400,5 +401,4 @@ rm $file
 clear
 list
 }
-list	
- server name as pulsaudi
+list
