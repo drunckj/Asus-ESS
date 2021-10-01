@@ -22,10 +22,11 @@ list (){
 	printf '\t\e[1;32m%-6s\e[m\n' "6. Clear cache and remove unused dependencies"
 	printf '\t\e[1;32m%-6s\e[m\n' "7. Install pulseeffects presets for better sound quality"
 	printf '\t\e[1;32m%-6s\e[m\n' "8. Mic input key not working"
-	printf '\t\e[1;32m%-6s\e[m\n' "9. Nvidia module not loading after installing [OPENSUSE]"
-	printf '\t\e[1;32m%-6s\e[m\n' "10. Switching to pipewire [OPENSUSE]"
-	printf '\t\e[1;32m%-6s\e[m\n' "11. Reset package manager "
-	printf '\t\e[1;32m%-6s\e[m\n' "12. Exit script"
+	printf '\t\e[1;32m%-6s\e[m\n' "9. Install Nvidia drivers"
+	printf '\t\e[1;32m%-6s\e[m\n' "10. Nvidia module not loading after installing [OPENSUSE]"
+	printf '\t\e[1;32m%-6s\e[m\n' "11. Switching to pipewire [OPENSUSE]"
+	printf '\t\e[1;32m%-6s\e[m\n' "12. Reset package manager "
+	printf '\t\e[1;32m%-6s\e[m\n' "13. Exit script"
 	printf '\t\e[1;32m%-6s\e[m' "enter choice : "
 	read choice
 	case $choice in
@@ -66,14 +67,17 @@ list (){
 		return 1
 		;;
 	10)
-		pipewire
+		Nvidia-fix
 		return 1
 		;;
 	11)
-		reset
+		pipewire
 		return 1
 		;;
 	12)
+		reset
+		;;
+	13)
 		exit 0
 		;;
 esac	 
@@ -370,6 +374,40 @@ list
 }
 ####################################################################################################################################
 Nvidia()
+{
+if [[ "$package" == "zypper" ]]
+then
+echo "What are you using Tumbleweed or leap ? [tw,le]"
+echo "enter tw for tumbleweed or le for leap:"
+read ver
+if [[ "$ver" == "tw" ]]
+then
+sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
+elif [[ "$ver" == "le" ]]
+then
+sudo zypper addrepo --refresh 'https:ec//download.nvidia.com/opensuse/leap/$releasever' NVIDIA
+fi
+printf '\e[1;30m%-6s\e[m' "Please visit the link to determine which driver you need : https://opensuse.github.io/openSUSE-docs-revamped-temp/install_proprietary/"
+echo "ignore the above step if your gpu is new"
+printf '\e[1;30m%-6s\e[m' "Is your gpu new [y/n] :"
+read c
+if [[ "$c" == "y" ]]
+then
+sudo zypper in x11-video-nvidiaG05
+elif [[ "$c" == "n" ]]
+then
+sudo zypper in x11-video-nvidiaG04
+fi
+printf '\e[1;34m%-6s\e[m' "Reboot now and when u boot into system run lsmod | grep nvidia if drivers are being loaded properly"
+sleep 10
+else
+echo "The script doesnt support other package managers right now."
+fi
+clear
+list
+}
+####################################################################################################################################
+Nvidia-fix()
 {
 sudo zypper in --force `rpm -qa "nvidia-gfx*kmp*"`
 clear
