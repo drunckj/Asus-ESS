@@ -318,7 +318,6 @@ fi
 fi
 if [[ $? -eq 0 ]]
 then
-	systemctl daemon-reload && systemctl enable asusd
 	systemctl --user enable asus-notify.service
 	systemctl --user start asus-notify.service
 	printf '\e[1;32m%-6s\e[m' "Asusctl installed. Reboot for proper functionality."
