@@ -235,16 +235,16 @@ then
 clear
 printf '\t\e[1;32m%-6s\e[m\n' "CAREFULLY NOTE DOWN YOUR PARTITON NAME" 
 lsblk -f
-sleep 7
-printf '\e[1;30m%-6s\e[m \n' "creating backup of fstab as fstab.bak. restore original if issue arises."
-sudo cp /etc/fstab /etc/fstab.bak
+sleep 5
+#printf '\e[1;30m%-6s\e[m \n' "creating backup of fstab as fstab.bak. restore original if issue arises."
+#sudo cp /etc/fstab /etc/fstab.bak
 printf '\e[1;32m%-6s\e[m\n' "I hope you would have noted it down properly." 
-printf '\e[1;30m%-6s\e[m' " Enter your partiton name : "
+printf '\e[1;32m%-6s\e[m' " Enter your partiton name : "
 read partname
-printf '\e[1;30m%-6s\e[m \n' "creating backup of fstab as fstab.bak. restore original if issue arises."
+printf '\e[1;32m%-6s\e[m\n' "creating backup of fstab as fstab.bak. restore original if issue arises."
 sudo cp /etc/fstab /etc/fstab.bak
 echo -e "/dev/${partname}/\t${loca}\tntfs-3g\tpermissions,locale=en_US.utf8\t0\t2" | sudo tee -a /etc/fstab > /dev/null
-printf '\e[1;30m%-6s\e[m \n' "On next reboot your partition should be mounted automatically"
+printf '\e[1;32m%-6s\e[m\n' "On next reboot your partition should be mounted automatically"
 sleep 5
 clear
 list 
