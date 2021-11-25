@@ -10,7 +10,7 @@ I **distrohop** alot and I found myself doing all this stuff manually which even
 > It works for other laptops too.
 
 ## Features of Script
-![Menu](screenshots/mainmenu.png)
+![Menu](screenshots/mainmenu1.png)
 
 ## How to use
 ```bash
