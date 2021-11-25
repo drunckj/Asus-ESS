@@ -25,8 +25,9 @@ list (){
 	printf '\t\e[1;32m%-6s\e[m\n' "9. Install Nvidia drivers"
 	printf '\t\e[1;32m%-6s\e[m\n' "10. Nvidia module not loading after installing [OPENSUSE]"
 	printf '\t\e[1;32m%-6s\e[m\n' "11. Switching to pipewire [OPENSUSE]"
-	printf '\t\e[1;32m%-6s\e[m\n' "12. Reset package manager "
-	printf '\t\e[1;32m%-6s\e[m\n' "13. Exit script"
+	printf '\t\e[1;32m%-6s\e[m\n' "12. Fix No sound through Hdmi[OPENSUSE]"
+	printf '\t\e[1;32m%-6s\e[m\n' "13. Reset package manager "
+	printf '\t\e[1;32m%-6s\e[m\n' "14. Exit script"
 	printf '\t\e[1;32m%-6s\e[m' "enter choice : "
 	read choice
 	case $choice in
@@ -75,9 +76,14 @@ list (){
 		return 1
 		;;
 	12)
+	        hdmifix
+	        return 1
+	        ;;
+	
+	13)
 		reset
 		;;
-	13)
+	14)
 		exit 0
 		;;
 esac	 
@@ -415,6 +421,7 @@ sleep 10
 clear
 list
 }
+##############################################################################################################
 pipewire()
 {
 	printf '\e[1;32m%-6s\e[m' "select 1st option when it shows errors and asks for user input to fix the conflict"
@@ -430,6 +437,20 @@ pipewire()
 	sleep 10
 	clear
 	list
+}
+#############################################################################################################
+hdmifix()
+{
+if [[ -f "/usr/lib/udev/rules.d/90-nvidia-udev-pm-G05.rules" ]]
+then
+sudo sed -i '2,8 s/^/#/' /usr/lib/udev/rules.d/90-nvidia-udev-pm-G05.rules
+echo "Reboot and audio should work"
+else
+echo "Sorry file doesn't exist. Find nvidia udev rules file and manually change the file. Follow link: https://dev.to/drunckj/fix-no-video-and-sound-output-through-hdmi-in-linux-2e76 "
+fi
+sleep 5
+clear
+list
 }
 ####################################################################################################################################
 reset()
